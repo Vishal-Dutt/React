@@ -45,6 +45,12 @@
                 count: this.state.count + 1
             });
         }
+
+        decrement = () => {
+            this.setState({
+                count: this.state.count - 1
+            })
+        }
         // The render method is called when state is changed
         render() {
             // console.log('render');
