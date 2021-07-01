@@ -22,11 +22,21 @@ export default class Todo extends Component {
         // this.state.tasks.push({ id: this.state.tasks.length + 1, txt: this.state.currTask });
         // this.state.currTask = '';
         // console.log(this.state);
+        if (this.state.currTask !== '') {
+            let narr = [...this.state.tasks, { id: this.state.tasks.length + 1, txt: this.state.currTask }];
+            this.setState({
+                tasks: narr,
+                currTask: ''
+            })
+        }
+    }
 
-        let narr = [...this.state.tasks,{id:this.state.tasks.length+1,txt:this.state.currTask}];
+    onDelete = (id) => {
+        let nfa = this.state.tasks.filter(function (tobj) {
+            return tobj.id !== id
+        })
         this.setState({
-            tasks:narr,
-            currTask:''
+            tasks: nfa
         })
     }
     render() {
@@ -44,14 +54,27 @@ export default class Todo extends Component {
                     <ul>
                         {/* JS Code */}
                         {
+                            // or Make map fuction Arrow Function
                             this.state.tasks.map(function (tobj) {
                                 return (
-                                    <li>
+                                    <li key={tobj.txt}>
                                         <h1>{tobj.txt}</h1>
-                                        <button>Delete</button>
+                                        {/* Wrong Method */}
+                                        {/* <button onClick={this.onDelete(tobj.id)}>Delete</button> */}
+
+                                        {/* The Below Approach is also wrong as fucntion defination is passed so the value of this is equal to undefined */}
+                                        {/* <button onClick={function(){
+                                            this.onDelete(tobj.id)
+                                        }}>Delete</button> */}
+
+                                        {/* Using Arrow Function */}
+                                        {/* Function is passed to onClick event handler */}
+                                        <button onClick={() => {
+                                            this.onDelete(tobj.id)
+                                        }}>Delete</button>
                                     </li>
                                 )
-                            })
+                            }.bind(this))
                         }
                     </ul>
                 </div>
