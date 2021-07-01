@@ -1,0 +1,21 @@
+Components --> Components are independent isolated and resuable piece of code just like our fucntions
+Components are of two Types 
+1. Class Components.
+2. Function Components.
+
+JSX is a Combination of HTML and JS code
+eg. const el = <h1> Hello </h1>
+
+Babel is basically a transpiler/compiler converts jsx code into js.
+
+Functional Components are used in static UI
+Class Components used for Dynamic UI.
+
+
+State 
+The State is a built in react object that is used to contain data and information 
+about the component.
+
+Render --> Display code on UI 
+Whenever our state,component changes 
+re-render --> reflects the changes done in component on UI.

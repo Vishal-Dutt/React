@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- React Algorithm Link -->
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    <!-- React DOM Link -->
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id='root'></div>
+</body>
+<script type="text/babel">
+    // Functional Components
+    // function Hello(pro)
+    function Hello({person='Default',relative}) {
+        // let arr = ['First', 'Second'];
+        // function fn() {
+        //     return 'asdf'
+        // }
+        // console.log(props);
+        console.log(relative);
+        return (
+            // JSX Code
+            // return can return only one element
+            // To return more than two elemetns wrap the elements under React.Fragment
+            // <React.Fragment>
+            //     <h1> Hello {arr}</h1>
+            //     <h2> Hello2 {fn()}</h2>
+            // </React.Fragment>
+            // props.person  props.key
+
+            // without using destructuring
+
+            // <React.Fragment>
+            //     <h1> Hello {props.person}</h1>
+            //     <h2> Hello2 {props.person}</h2>
+            // </React.Fragment>
+
+            // 
+            <React.Fragment>
+                <h1> Hello {person}</h1>
+                <h2> Hello2 {person}</h2>
+            </React.Fragment>
+        )
+    }
+
+
+    // ********* What is not allowed in return **********
+    // loops are not allowed.
+    // variable Declaration is not allowed 
+    // function Declaration is not allowed
+    // if else conditions and switch insted use ternary operator
+    // an cannot be rendered 
+
+    // array can be rendered in jsx return
+    // function call is allowed in return jsx
+    // If we have to use variable in jsx then use them in {} 
+
+    // Code Reusability
+    // Convention Component Name must be in Camel Case
+    function Hellos() {
+        return (
+            // Multiple props can be passed
+            <React.Fragment>
+                <Hello person='Alex' relative='everyone'/>
+                <Hello person='Henry' />
+                <Hello />
+                <Hello />
+            </React.Fragment>
+            // Props is used to send data from parent to child
+        )
+    }
+    // Render the Changes 
+    // ReactDOM.reder takes two arguments component to be rendered and elelment it will be attached
+    // ReactDOM.render(<Hello></Hello>, document.getElementById('root'));
+    // ReactDOM.render(<Hellos></Hellos>, document.getElementById('root'));
+    ReactDOM.render(<Hellos />, document.getElementById('root'));
+
+    // ReactDOM.render(<Hellos />, document.getElementById('root'));
+    // ReactDOM.render(<Hellos />, document.getElementById('root'));
+    // If two ReactDOM.render statement are use then the last statement overrides all the previous render statements.
+    // There is only one parent component which is rendered.
+</script>
+
+</html>
