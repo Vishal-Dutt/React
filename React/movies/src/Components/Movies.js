@@ -1,15 +1,26 @@
 import React, { Component } from 'react'
 // Importing Normal Exprot file Using {} Destructuring
-import { getMovies } from './getMovies'
+// import { getMovies } from './getMovies'
+import axios from 'axios';
 export default class Movies extends Component {
     constructor() {
         super();
         this.state = {
-            movies: getMovies(),
+            // movies: getMovies(),
+            movies: [],
             currSearchText: '',
             currPage: 1,
             limit: 4
         }
+    }
+
+    async componentDidMount() {
+        console.log('Component Did Mount');
+        let res = await axios.get('https://backend-react-movie.herokuapp.com/movies');
+        console.log(res.data.movies);
+        this.setState({
+            movies: res.data.movies
+        })
     }
 
     handleChange = (e) => {
@@ -80,10 +91,11 @@ export default class Movies extends Component {
         })
     }
 
-    handlePageChange=(pageNumber)=>{
-        this.setState({currPage:pageNumber})
+    handlePageChange = (pageNumber) => {
+        this.setState({ currPage: pageNumber })
     }
     render() {
+        console.log("render");
         let { movies, currSearchText, currPage, limit } = this.state;   // ES6 Destructuring
         let filteredArr = [];
         if (currSearchText === '') {
@@ -108,6 +120,16 @@ export default class Movies extends Component {
         let ei = si + limit;
         // .slice return a shallow copy of a portion of array ei no included
         filteredArr = filteredArr.slice(si, ei);
+
+        // Don try to setState in render method until have very good satisfactory condition as it may lead to infinite cycle 
+        // as in this case if movies array is empy array then the below condition is always true so the render method 
+        // is called again and again so componentDidMount will no be called.
+        // if(filteredArr.length===0){
+        //     this.setState({
+        //         currPage:1
+        //     })
+        // }
+
         return (
             // JSX
             <div className='container'>
@@ -161,7 +183,7 @@ export default class Movies extends Component {
                                     pageNumArr.map((pageNumber) => {
                                         let classStyle = pageNumber === currPage ? 'page-item active' : 'page-item';
                                         return (
-                                            <li key={pageNumber}onClick={()=> this.handlePageChange(pageNumber)} className={classStyle}><span className="page-link" >{pageNumber}</span></li>
+                                            <li key={pageNumber} onClick={() => this.handlePageChange(pageNumber)} className={classStyle}><span className="page-link" >{pageNumber}</span></li>
                                         )
                                     })
                                 }
@@ -179,3 +201,4 @@ export default class Movies extends Component {
     <a className="page-link" href="#">2</a>
 </li>
 <li className="page-item"><a className="page-link" href="#">3</a></li> */}
+//
