@@ -6,7 +6,9 @@ export default class Movies extends Component {
         super();
         this.state = {
             movies: getMovies(),
-            currSearchText: ''
+            currSearchText: '',
+            currPage: 1,
+            limit: 4
         }
     }
 
@@ -78,8 +80,11 @@ export default class Movies extends Component {
         })
     }
 
+    handlePageChange=(pageNumber)=>{
+        this.setState({currPage:pageNumber})
+    }
     render() {
-        let { movies, currSearchText } = this.state;   // ES6 Destructuring
+        let { movies, currSearchText, currPage, limit } = this.state;   // ES6 Destructuring
         let filteredArr = [];
         if (currSearchText === '') {
             filteredArr = movies;
@@ -91,6 +96,18 @@ export default class Movies extends Component {
             })
         }
         // console.log("render");
+
+        let numberofPages = Math.ceil(filteredArr.length / limit);
+        let pageNumArr = [];
+        for (let i = 0; i < numberofPages; i++) {
+            pageNumArr.push(i + 1);
+        }
+        // PAGINATION
+        let si = (currPage - 1) * limit;
+        // let ei = si + limit - 1;
+        let ei = si + limit;
+        // .slice return a shallow copy of a portion of array ei no included
+        filteredArr = filteredArr.slice(si, ei);
         return (
             // JSX
             <div className='container'>
@@ -138,9 +155,27 @@ export default class Movies extends Component {
                                 }
                             </tbody>
                         </table>
+                        <nav aria-label="...">
+                            <ul className="pagination">
+                                {
+                                    pageNumArr.map((pageNumber) => {
+                                        let classStyle = pageNumber === currPage ? 'page-item active' : 'page-item';
+                                        return (
+                                            <li key={pageNumber}onClick={()=> this.handlePageChange(pageNumber)} className={classStyle}><span className="page-link" >{pageNumber}</span></li>
+                                        )
+                                    })
+                                }
+                            </ul>
+                        </nav>
                     </div>
                 </div>
             </div>
         )
     }
 }
+
+{/* <li className="page-item"><a className="page-link" href="#">1</a></li>
+<li className="page-item active" aria-current="page">
+    <a className="page-link" href="#">2</a>
+</li>
+<li className="page-item"><a className="page-link" href="#">3</a></li> */}
