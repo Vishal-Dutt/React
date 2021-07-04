@@ -28,6 +28,56 @@ export default class Movies extends Component {
         });
     }
 
+    sortByRatings = (e) => {
+        let className = e.target.className;
+        // console.log(className);
+        let sortedMovies = [];
+        if (className === 'fa fa-sort-asc') {
+            // ascending order
+            // a-b
+            // If compareFunction(a, b) returns a value > than 0, sort b before a.
+            // If compareFunction(a, b) returns a value ≤ 0, leave a and b in the same order
+            sortedMovies = this.state.movies.sort(function (movieObjA, movieObjB) {
+                return movieObjA.dailyRentalRate - movieObjB.dailyRentalRate;
+            });
+
+        } else {
+            // Descending order
+            // b - a
+            sortedMovies = this.state.movies.sort(function (movieObjA, movieObjB) {
+                return movieObjB.dailyRentalRate - movieObjA.dailyRentalRate;
+            });
+        }
+        this.setState({
+            movies: sortedMovies
+        })
+    }
+
+    sortByStocks = (e) => {
+        let className = e.target.className;
+        // console.log(className);
+        let sortedMovies = [];
+        if (className === 'fa fa-sort-asc') {
+            // ascending order
+            // a-b
+            // If compareFunction(a, b) returns a value > than 0, sort b before a.
+            // If compareFunction(a, b) returns a value ≤ 0, leave a and b in the same order
+            sortedMovies = this.state.movies.sort(function (movieObjA, movieObjB) {
+                return movieObjA.numberInStock - movieObjB.numberInStock;
+            });
+
+        } else {
+            // Descending order
+            // b - a
+            sortedMovies = this.state.movies.sort(function (movieObjA, movieObjB) {
+                return movieObjB.numberInStock - movieObjA.numberInStock;
+            });
+        }
+        this.setState({
+            movies: sortedMovies
+        })
+    }
+
     render() {
         let { movies, currSearchText } = this.state;   // ES6 Destructuring
         let filteredArr = [];
@@ -57,14 +107,14 @@ export default class Movies extends Component {
                                     <th scope="col">Title</th>
                                     <th scope="col">Genre</th>
                                     <th scope="col">
-                                        <i className="fa fa-sort-asc" aria-hidden="true"></i>
+                                        <i onClick={this.sortByStocks} className="fa fa-sort-asc" aria-hidden="true"></i>
                                         Stock
-                                        <i className="fa fa-sort-desc" aria-hidden="true"></i>
+                                        <i onClick={this.sortByStocks} className="fa fa-sort-desc" aria-hidden="true"></i>
                                     </th>
                                     <th scope="col">
-                                        <i className="fa fa-sort-asc" aria-hidden="true"></i>
+                                        <i onClick={this.sortByRatings} className="fa fa-sort-asc" aria-hidden="true"></i>
                                         Rate
-                                        <i className="fa fa-sort-desc" aria-hidden="true"></i>
+                                        <i onClick={this.sortByRatings} className="fa fa-sort-desc" aria-hidden="true"></i>
                                     </th>
                                     <th></th>
                                 </tr>
