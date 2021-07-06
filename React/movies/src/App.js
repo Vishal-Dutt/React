@@ -1,7 +1,7 @@
 import Movies from "./Components/Movies";
 import About from "./Components/About";
 import Home from "./Components/Home";
-import Nav from "./Components/Nav";
+import Nav from "./Nav";
 
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 function App() {
@@ -45,11 +45,19 @@ function App() {
 
     // Use exact as it exactly matches path of the component
     <Router>
+      <Nav />
       <Switch>
-        <Nav/>
         <Route path='/' exact component={Home} />
         <Route path='/movies' component={Movies} />
-        <Route path='/about' component={About} />
+        {/* Passing prop */}
+        {/* <Route path='/about' component={About} isAuth={true}/> */}
+        {/* Render Prop */}
+
+        {/* When we use render method the render method pass internal props to the component
+          we get these props in the render callback fucntions . we can add our props and pass there props to the components*/}
+        <Route path='/about' render={(props)=>(
+          <About {...props} isAuth={true}/>
+        )}/>
       </Switch>
     </Router>
   );
