@@ -1,0 +1,49 @@
+Component Life Cycle has three phase:
+1. Mounting Phase : In this phase the instance of a component is created and inserted into the DOM. 
+2. Update Phase: Component Update whenever the state changes.
+3. Unmounting Phase : It is called when a component instance is destroyed and unmounted from the DOM.
+
+https://www.javatpoint.com/react-component-life-cycle
+
+
+|---------------------------|-----------------------------------|---------------------------|
+|     Mounting Phase        |   Update Phase (State Change)     |   Unmounting Phase        |
+|---------------------------|-----------------------------------|---------------------------|
+|        constructor        |                                   |                           |
+|---------------------------|              render               |                           |
+|         render            |                                   |    ComponentWillUnnount   |
+|---------------------------|-----------------------------------|                           |
+|                           |                                   |                           |
+|     ComponentDidMount     |         ComponentDidUpdate        |                           |
+|                           |                                   |                           |
+|___________________________|___________________________________|___________________________|
+
+
+Flow Diagram of Life Cycle of Component
+
+
+ ___________________         ___________________         _________________________         ______________________________________         _______________________________  
+|                   |       |                   |       |                         |       |                                      |       |                               |   
+|                   |       |                   |       |                         |       |     |-------->Render----------|      |       |                               |   
+|     constructor   |------>|       Render      |------>|     ComponentDidMount   |------>|     |       (cycle)           |      |------>|      ComponentWillUnmount     |   
+|                   |       |                   |       |                         |       |     |---ComponentDidMount<----|      |       |                               |   
+|___________________|       |___________________|       |_________________________|       |______________________________________|       |_______________________________|   
+        |                                                           |                         |                           |                 |                       |
+         \                 MOUNTING PHASE                          /                           \     Update Phase        /                   \    Unmount Phase    /
+          \_______________________________________________________/                             \_______________________/                     \___________________/
+
+
+ComponentDidMount will run only once in the life cycle of component when component inserted in the DOM.
+ComponentDidUpdate runs as many no times the state changes
+ComponentWillUnmount run only once in the life cycle of Components when component removes from the DOm.
+
+ComponentDidMount
+Sideeffects are handelled in the ComponentDidMount.
+Side effects are basically anything that affects something outside of the scope of the current function that's being executed.
+API requests to our backend service.
+Call to our authentication service.
+Network requests, set interval initialization, Adding event listners 
+all these type of requests are handelled in ComponentDidMount.
+
+Important Point 
+Do not change state in render as it may leads to infinite loop as whenever state change the render method will run 
