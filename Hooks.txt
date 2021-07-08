@@ -39,3 +39,12 @@ Syntax:
 useEffect(()=>{
     // Code
 },[])
+
+Third Variation of useEffect
+Non empty dependency array is passed
+It runs after those renders that are caused due to state change of the passed values.
+Pass state value in the dependency array
+Syntax:
+useEffect(()=>{
+    //Code
+},[stateChangeValue,stateChangeVlaue])

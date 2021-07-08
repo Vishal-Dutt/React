@@ -20,7 +20,7 @@ function Ue2() {
             <button onClick={() => { setCount(count + 1) }}>Click</button>
             {/* onClick is an event. And on event we pass defination of fucntion on events ans the fucntion is execulted/called by the button(in this case).The aboe is fucntion defination*/}
 
-            {/* <button onClick={setCount(count + 1)}>Click</button> */}
+            {/* <button onClick={setCount(count + 1) }>Click</button> */}
             {/* Above line is function call it will give an error */}
         </div>
     )
