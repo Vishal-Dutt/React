@@ -1,0 +1,41 @@
+Using Hooks we can achieve class component functionalities in functional component
+
+useState provides functional component to manipulate state in functional component
+In functional component the new state is created once only as functional components function runs every 
+time when the state changes.
+
+so the question arises if functional component function will run every time the new state is create ane the value of the state is set to the initial state?
+
+Ans--> React knows when functional component runs for the first time. When functional component runs for the first time only the useState will call an the new state
+is created ans whenever the functional component is rerendered const[varname,setfuntionName] = useState(initialstatevalue) gets skipped.
+so useState runs only first time the functional component is rendered.
+
+useEffect provides class component functionalities in class component
+with useEffect we can invoke side effect in functional components
+
+Important Point
+useEffect are run after render 
+
+Syntax 
+useEffect(()=>{
+    // code 
+},optional dependency arrayfunctionalities)
+takes two arguments callbackfuntion and optional dependency array]
+
+First Variation of useEffect
+Syntax:
+useEffect(()=>{
+    // Code
+})
+If optional dependency array is not passed the useEffect will run a combination of componentDidMount and componentDidUpdate
+It runs after every render of the functional component
+
+Second Variation of useEffect
+
+Dependency array is passed as as second arguments to the useEffect 
+as empty dependency array is passed the useEffect will run only first time afther the first render method So it will behave as componentDidMount.
+
+Syntax:
+useEffect(()=>{
+    // Code
+},[])
