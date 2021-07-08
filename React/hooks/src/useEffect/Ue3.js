@@ -52,6 +52,7 @@ function Ue3() {
         document.title = `Clicked ${count} times`;
     },[count])
 
+    // useEffect will run for both state value ie for count and darkMode
     // useEffect(() => {
     //     console.log('useEffect');
     //     document.title = `Clicked ${count} times`;
