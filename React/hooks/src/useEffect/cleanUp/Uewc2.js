@@ -8,6 +8,8 @@ function Uewc() {
     // return will act as componentWillUnmount()
     // useEffect will run only for one time in lifecycle
     // run just before unmount of component
+
+    // useEffect will act as combination of componentDidMount() and componentDidUpdate()
     useEffect(() => {
         console.log('useEffect');
         document.title = `Clicked ${count} times`;
