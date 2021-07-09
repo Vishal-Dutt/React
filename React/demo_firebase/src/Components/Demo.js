@@ -20,7 +20,7 @@ function Demo() {
             console.log(res.user);
             setUser(res.user);
             setLoading(false);
-        } catch (e){
+        } catch (e) {
             // setError("Failed to Sign In");
             setError(e.message);
             setTimeout(() => {
@@ -32,8 +32,21 @@ function Demo() {
         setEmail('');
     }
 
-    const handleSignOut = () => {
-
+    // handleSignOut is a async funtino 
+    const handleSignOut = async () => {
+        try {
+            setLoading(true);
+            let res = await auth.signOut();
+            console.log(res);
+            setUser(null);
+            setLoading(false);
+        } catch (e) {
+            setError(e.message);
+            setTimeout(() => {
+                setError('');
+            }, 2000);
+            setLoading(false);
+        }
     }
 
     return (
