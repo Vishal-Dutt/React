@@ -3,18 +3,20 @@ import ThemeContext from './ThemeContext';
 import Dropdown from './Dropdown';
 import Category from './Category';
 function Navbar() {
-    const value = useContext(ThemeContext);
+    // const value = useContext(ThemeContext);
     // console.log(value);
 
     const navStyle = {
         height: '30vh',
         width: '90vw',
-        backgroundColor: `${value.theme == 'Dark' ? 'black' : 'grey'}`,
+        // backgroundColor: `${value.theme == 'Dark' ? 'black' : 'grey'}`,
+        backgroundColor: 'black',
         margin: '0 auto',
         marginTop: '5%'
     }
     const pStyle = {
-        color: `${value.theme == 'Dark' ? 'white' : 'black'}`
+        // color: `${value.theme == 'Dark' ? 'white' : 'black'}`
+        color: 'white'
     }
     console.log('Nav render');
     return (
@@ -30,4 +32,4 @@ function Navbar() {
     )
 }
 
-export default Navbar
+export default React.memo(Navbar)
