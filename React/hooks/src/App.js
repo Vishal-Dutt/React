@@ -11,6 +11,8 @@ import './App.css';
 
 import Main from './Context/Main';
 
+import Central from './Context2/Central';
+
 function App() {
   return (
     <>
@@ -21,7 +23,8 @@ function App() {
       {/* <Ue3/> */}
       {/* <Uewc/> */}
       {/* <Demo/> */}
-      <Main/>
+      {/* <Main/> */}
+      <Central/>
     </>
   );
 }
