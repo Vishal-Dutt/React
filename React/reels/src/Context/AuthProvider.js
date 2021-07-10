@@ -1,14 +1,13 @@
 import React, { useState, useContext, useEffect } from 'react'
-import { aurth } from '..Firebase/'
 import { auth } from '../Firebase';
 
 // context
-const AuthContext = React.createContext();
+export const AuthContext = React.createContext();
 
 function AuthProvider({ children }) {
     const [currentUser, setCurrentUser] = useState();
     const [loading, setLoading] = useState(true);
-    function signup() {
+    function signup(email, password) {
         return auth.createUserWithEmailAndPassword(email, password);
     }
 
