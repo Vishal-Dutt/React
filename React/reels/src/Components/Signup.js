@@ -8,7 +8,7 @@ function Signup() {
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
 
-
+    const [file,setFile] = useState(null);
     const { signup } = useContext(AuthContext);
     console.log(signup);
     const handleSignup = async (e) => {
@@ -37,7 +37,7 @@ function Signup() {
                     <label htmlFor=''>Password</label>
                     <input type='password' value={password} onChange={(e) => setPassword(e.target.value)} />
                 </div>
-
+                
                 <button type='submit' disabled={loading}>Login</button>
             </form>
         </div>
