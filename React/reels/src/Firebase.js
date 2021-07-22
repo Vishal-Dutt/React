@@ -18,7 +18,7 @@ const firestore = firebase.firestore();
 // Exporting/exposing only requried collections
 export const database = {
     // To stroe data we have to create a collection to maake collection require collection object 
-    // 
+    // Exporting database object in this we have already created a collection for the user
     users: firestore.collection('users'),
 
     getCurrentTimeStamp: firebase.firestore.FieldValue.serverTimestamp  // current time 
