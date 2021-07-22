@@ -23,6 +23,7 @@ function AuthProvider({ children }) {
     useEffect(() => {
         // Adds an observer.
         // componentDidMount
+        // useEffect is observer onAuthentication state it calls automatically when state changes
         const unsubscribe = auth.onAuthStateChanged(user => {
             setCurrentUser(user);
             setLoading(false);

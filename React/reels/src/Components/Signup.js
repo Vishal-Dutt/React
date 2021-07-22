@@ -57,10 +57,11 @@ function Signup() {
             // Handle successful uploads on complete
             // For instance, get the download URL: https://firebasestorage.googleapis.com/...
             async function fn3() {
+                // Get download Url of the Uploaded file 
                 let downloadUrl = await uploadTastListner.snapshot.ref.getDownloadURL();
                 console.log(downloadUrl);
 
-                // 
+                // Go to collection and then user then crate a document add the details
                 await database.users.doc(uid).set({
                     email: email,
                     userid: uid,
