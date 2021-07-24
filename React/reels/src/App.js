@@ -6,6 +6,9 @@ import Main from './MaterialUI/Main';
 
 import Login from './Components/Login';
 import Ioa from './Components/Ioa';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import Feed from './Components/Feed';
+import PrivateRoute from './Components/PrivateRoute';
 
 function App() {
   return (
@@ -17,7 +20,17 @@ function App() {
     //   </>
     // </AuthProvider>
     // // <Main/>
-    <Ioa/>
+    // <Ioa/>
+    <Router>
+      <AuthProvider>
+        <Switch>
+          {/* exact path and compoent props is passed to the PrivateRouter Component*/}
+          <PrivateRoute exact path='/' component={Feed} />
+          <Route path='/login' component={Login} />
+          <Route path='/signup' component={Signup} />
+        </Switch>
+      </AuthProvider>
+    </Router>
   );
 }
 

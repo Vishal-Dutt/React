@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react'
+import { useHistory } from 'react-router-dom';
 import { AuthContext } from '../Context/AuthProvider';
 import { storage, database } from '../Firebase';
 
@@ -8,10 +9,10 @@ function Signup() {
     const [name, setName] = useState('');
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
-
+    const history = useHistory();
     // File state
     const [file, setFile] = useState(null);
-    const { signup } = useContext(AuthContext);
+    const { signup, currentUser } = useContext(AuthContext);
     console.log(signup);
     const handleSignup = async (e) => {
         e.preventDefault();
@@ -87,11 +88,20 @@ function Signup() {
         // Gives and array of file
         // let file = e.target.files;
         let file = e.target.files[0];
-        // console.log(file);
+        console.log(file);
         if (file != null) {
             setFile(file);
         }
     }
+
+    // ComponentDidMount
+    // Check if the User is signed up then redirect it to the feed page no need to show the signup component 
+
+    useEffect(() => {
+        if (currentUser) {
+            history.push('/');
+        }
+    }, [])
 
     return (
         <div>
