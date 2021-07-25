@@ -20,8 +20,10 @@ export const database = {
     // To stroe data we have to create a collection to maake collection require collection object 
     // Exporting database object in this we have already created a collection for the user
     users: firestore.collection('users'),
-
+    // Post database
+    posts: firestore.collection('posts'),
     getCurrentTimeStamp: firebase.firestore.FieldValue.serverTimestamp  // current time 
+
 }
 
 export const storage = firebase.storage();

@@ -65,7 +65,7 @@ function Signup() {
                 // Go to collection and then user then crate a document add the details
                 await database.users.doc(uid).set({
                     email: email,
-                    userid: uid,
+                    userId: uid,
                     username: name,
                     createdAt: database.getCurrentTimeStamp(),
                     profileUrl: downloadUrl,
@@ -74,6 +74,7 @@ function Signup() {
             }
             setLoading(false);
             console.log('User has signed up')
+            history.push('/');
         }
         catch (err) {
             setError(err)
