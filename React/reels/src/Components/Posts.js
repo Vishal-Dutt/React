@@ -67,6 +67,29 @@ const useStyles = makeStyles({
 function Posts({ userData = null }) {
     const classes = useStyles();
     const [posts, setPosts] = useState(null);
+
+    // State to handle Dialog of the post
+    const [openId, setOpenId] = useState(null);
+
+    // const [openId, setOpenId] = useState(false);
+    // Reason why we have not use true and false to manage the state of dialog
+    // Suppose we have 3 posts and we have used the loop to hanlde the state of the dialog it will check if the state is true it will open the model
+    // then render method will be invoked then the loop will run again it will check the state of the first post dialog it will open the model but it will checks for the 
+    // rest of the posts it will open the modal for the second post also and same for the rest of the posts. So to overcome this problen use posts uId to handle the state of the dialog
+
+    // on opening modal we set the state of the setOpenId to post.pId the loop checks if the setOpenstate is set to post.pId.
+    // If yes it will open the modal and checks and open the modal for that post now in the loop it will check the postid for the other posts.
+    // But the postId for every post is unique it will not open the dialog for other posts.
+
+    const handleClickOpen = (id) => {
+        setOpenId(id);
+    };
+
+    const handleClose = () => {
+        setOpenId(null);
+    };
+
+
     const callback = entries => {
         entries.forEach(element => {
             console.log(element);
@@ -143,6 +166,48 @@ function Posts({ userData = null }) {
                                         <Avatar src={post.uProfile}></Avatar>
                                         <h4>{post.uName}</h4>
                                     </div>
+                                    {/* setting SetOpenId to post.pId to manage the state of the dialog */}
+                                    <ChatBubbleIcon onClick={() => handleClickOpen(post.pId)} className={`${classes.ci} icon-styling`} />
+                                    <Dialog maxWidth="md" onClose={handleClose} aria-labelledby="customized-dialog-title" open={openId === post.pId}>
+                                        <MuiDialogContent>
+                                            <div className='dcontainer'>
+                                                <div className='video-part'>
+                                                    <video autoPlay={true} className='video-styles2' controls id={post.id} muted="muted" type="video/mp4" >
+                                                        <source src={post.pUrl} type="video/webm" />
+                                                    </video>
+                                                </div>
+                                                <div className='info-part'>
+                                                    <Card>
+                                                        <CardHeader
+                                                            avatar={
+                                                                <Avatar src={post?.uProfile} aria-label="recipe" className={classes.avatar}>
+                                                                </Avatar>
+                                                            }
+                                                            action={
+                                                                <IconButton aria-label="settings">
+                                                                    <MoreVertIcon />
+                                                                </IconButton>
+                                                            }
+                                                            title={post?.uName}
+                                                        />
+
+                                                        <hr style={{ border: "none", height: "1px", color: "#dfe6e9", backgroundColor: "#dfe6e9" }} />
+                                                        <CardContent className={classes.seeComments}>
+
+                                                            {/* <Comments userData={userData} postData={post} /> */}
+                                                        </CardContent>
+
+                                                    </Card>
+                                                    <div className='extra'>
+                                                        <div className='likes'>
+                                                            <Typography className={classes.typo} variant='body2'>Liked By {post.likes.length == 0 ? 'nobody' : ` others`}</Typography>
+                                                        </div>
+                                                        {/* <AddComment  userData={userData} postData={post}/>  */}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </MuiDialogContent>
+                                    </Dialog>
                                 </div>
                                 <div className='place'></div>
                             </React.Fragment>
