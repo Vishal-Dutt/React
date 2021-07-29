@@ -54,7 +54,7 @@ function Likes({ userData = null, postData = null }) {
         } else {
             // Like
             // add the liked post in the liked array
-            let uarr = [...postData.like, userData.userId];
+            let uarr = [...postData.likes, userData.userId];
             // updating in the database
             await database.posts.doc(postData.postId).update({
                 likes: uarr
@@ -67,7 +67,7 @@ function Likes({ userData = null, postData = null }) {
             {
                 like != null ? <>
                     {/* Styling the post dialog */}
-                    {like == false ? <FavoriteIcon className={`${classes.unlike}`} onClick={handleLike} /> :
+                    {like == false ? <FavoriteIcon className={`${classes.unlike} icon-styling`} onClick={handleLike} /> :
                         <FavoriteIcon className={`${classes.like} icon-styling`} onClick={handleLike} />}
                 </>
                     : <></>

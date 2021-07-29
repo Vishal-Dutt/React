@@ -17,6 +17,7 @@ import MuiDialogContent from '@material-ui/core/DialogContent';
 import { database } from '../Firebase';
 import Video from './Video';
 import Likes from './Likes';
+import AddComment from './AddComment';
 
 const useStyles = makeStyles({
     root: {
@@ -166,7 +167,7 @@ function Posts({ userData = null }) {
                                         <Avatar src={post.uProfile}></Avatar>
                                         <h4>{post.uName}</h4>
                                     </div>
-                                    <Likes userData={userData} postData={post}/>
+                                    <Likes userData={userData} postData={post} />
                                     {/* setting SetOpenId to post.pId to manage the state of the dialog */}
                                     <ChatBubbleIcon onClick={() => handleClickOpen(post.pId)} className={`${classes.ci} icon-styling`} />
                                     <Dialog maxWidth="md" onClose={handleClose} aria-labelledby="customized-dialog-title" open={openId === post.pId}>
@@ -203,7 +204,7 @@ function Posts({ userData = null }) {
                                                         <div className='likes'>
                                                             <Typography className={classes.typo} variant='body2'>Liked By {post.likes.length == 0 ? 'nobody' : ` others`}</Typography>
                                                         </div>
-                                                        {/* <AddComment  userData={userData} postData={post}/>  */}
+                                                        <AddComment userData={userData} postData={post} />
                                                     </div>
                                                 </div>
                                             </div>
